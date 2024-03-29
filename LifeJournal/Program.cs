@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LifeJournal
+namespace LifeQuest
 {
 	internal static class Program
 	{

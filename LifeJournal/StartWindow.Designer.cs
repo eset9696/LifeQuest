@@ -1,4 +1,4 @@
-﻿namespace LifeJournal
+﻿namespace LifeQuest
 {
 	partial class StartWindow
 	{

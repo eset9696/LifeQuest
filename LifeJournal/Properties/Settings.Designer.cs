@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LifeJournal.Properties
+namespace LifeQuest.Properties
 {
 
 
