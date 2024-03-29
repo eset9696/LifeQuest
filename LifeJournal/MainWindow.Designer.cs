@@ -1,6 +1,6 @@
 ﻿namespace LifeJournal
 {
-	partial class Form1
+	partial class MainWindow
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
 			this.tabControlMainPages = new System.Windows.Forms.TabControl();
 			this.tabPageMain = new System.Windows.Forms.TabPage();
 			this.panelMainClaimReward = new System.Windows.Forms.Panel();
@@ -38,12 +38,11 @@
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.tabPageQuestJournal = new System.Windows.Forms.TabPage();
 			this.imageListTabs = new System.Windows.Forms.ImageList(this.components);
-			this.panelMainHabbits = new System.Windows.Forms.Panel();
 			this.buttonMainAddHabbit = new System.Windows.Forms.Button();
+			this.checkedListBoxMainHabbitDone = new System.Windows.Forms.CheckedListBox();
 			this.tabControlMainPages.SuspendLayout();
 			this.tabPageMain.SuspendLayout();
 			this.panelMainClaimReward.SuspendLayout();
-			this.panelMainHabbits.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControlMainPages
@@ -68,7 +67,8 @@
 			// tabPageMain
 			// 
 			this.tabPageMain.BackColor = System.Drawing.Color.White;
-			this.tabPageMain.Controls.Add(this.panelMainHabbits);
+			this.tabPageMain.Controls.Add(this.checkedListBoxMainHabbitDone);
+			this.tabPageMain.Controls.Add(this.buttonMainAddHabbit);
 			this.tabPageMain.Controls.Add(this.panelMainClaimReward);
 			this.tabPageMain.ImageIndex = 1;
 			this.tabPageMain.Location = new System.Drawing.Point(4, 84);
@@ -144,25 +144,28 @@
 			this.imageListTabs.Images.SetKeyName(0, "Journal.ico");
 			this.imageListTabs.Images.SetKeyName(1, "Main.ico");
 			// 
-			// panelMainHabbits
-			// 
-			this.panelMainHabbits.Controls.Add(this.buttonMainAddHabbit);
-			this.panelMainHabbits.Location = new System.Drawing.Point(6, 106);
-			this.panelMainHabbits.Name = "panelMainHabbits";
-			this.panelMainHabbits.Size = new System.Drawing.Size(806, 336);
-			this.panelMainHabbits.TabIndex = 4;
-			// 
 			// buttonMainAddHabbit
 			// 
 			this.buttonMainAddHabbit.Font = new System.Drawing.Font("Verdana", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonMainAddHabbit.ForeColor = System.Drawing.Color.RoyalBlue;
-			this.buttonMainAddHabbit.Location = new System.Drawing.Point(3, 290);
+			this.buttonMainAddHabbit.Location = new System.Drawing.Point(6, 396);
 			this.buttonMainAddHabbit.Name = "buttonMainAddHabbit";
 			this.buttonMainAddHabbit.Size = new System.Drawing.Size(803, 46);
 			this.buttonMainAddHabbit.TabIndex = 0;
 			this.buttonMainAddHabbit.Text = "+";
 			this.buttonMainAddHabbit.UseVisualStyleBackColor = true;
 			this.buttonMainAddHabbit.Click += new System.EventHandler(this.buttonMainAddHabbit_Click);
+			// 
+			// checkedListBoxMainHabbitDone
+			// 
+			this.checkedListBoxMainHabbitDone.CheckOnClick = true;
+			this.checkedListBoxMainHabbitDone.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkedListBoxMainHabbitDone.FormattingEnabled = true;
+			this.checkedListBoxMainHabbitDone.Location = new System.Drawing.Point(6, 107);
+			this.checkedListBoxMainHabbitDone.Name = "checkedListBoxMainHabbitDone";
+			this.checkedListBoxMainHabbitDone.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.checkedListBoxMainHabbitDone.Size = new System.Drawing.Size(803, 290);
+			this.checkedListBoxMainHabbitDone.TabIndex = 4;
 			// 
 			// Form1
 			// 
@@ -177,7 +180,6 @@
 			this.tabPageMain.ResumeLayout(false);
 			this.panelMainClaimReward.ResumeLayout(false);
 			this.panelMainClaimReward.PerformLayout();
-			this.panelMainHabbits.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -192,7 +194,7 @@
 		private System.Windows.Forms.Label labelMainProgress;
 		private System.Windows.Forms.Panel panelMainClaimReward;
 		private System.Windows.Forms.ImageList imageListTabs;
-		private System.Windows.Forms.Panel panelMainHabbits;
+		private System.Windows.Forms.CheckedListBox checkedListBoxMainHabbitDone;
 		private System.Windows.Forms.Button buttonMainAddHabbit;
 	}
 }
