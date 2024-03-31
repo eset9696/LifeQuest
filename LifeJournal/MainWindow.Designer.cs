@@ -32,14 +32,14 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
 			this.tabControlMainPages = new System.Windows.Forms.TabControl();
 			this.tabPageMain = new System.Windows.Forms.TabPage();
+			this.checkedListBoxMainHabbits = new System.Windows.Forms.CheckedListBox();
+			this.buttonMainAddHabbit = new System.Windows.Forms.Button();
 			this.panelMainClaimReward = new System.Windows.Forms.Panel();
 			this.labelMainProgress = new System.Windows.Forms.Label();
 			this.btnClaimReward = new System.Windows.Forms.Button();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.tabPageQuestJournal = new System.Windows.Forms.TabPage();
 			this.imageListTabs = new System.Windows.Forms.ImageList(this.components);
-			this.buttonMainAddHabbit = new System.Windows.Forms.Button();
-			this.checkedListBoxMainHabbitDone = new System.Windows.Forms.CheckedListBox();
 			this.tabControlMainPages.SuspendLayout();
 			this.tabPageMain.SuspendLayout();
 			this.panelMainClaimReward.SuspendLayout();
@@ -67,7 +67,7 @@
 			// tabPageMain
 			// 
 			this.tabPageMain.BackColor = System.Drawing.Color.White;
-			this.tabPageMain.Controls.Add(this.checkedListBoxMainHabbitDone);
+			this.tabPageMain.Controls.Add(this.checkedListBoxMainHabbits);
 			this.tabPageMain.Controls.Add(this.buttonMainAddHabbit);
 			this.tabPageMain.Controls.Add(this.panelMainClaimReward);
 			this.tabPageMain.ImageIndex = 1;
@@ -77,6 +77,29 @@
 			this.tabPageMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.tabPageMain.Size = new System.Drawing.Size(818, 448);
 			this.tabPageMain.TabIndex = 0;
+			// 
+			// checkedListBoxMainHabbits
+			// 
+			this.checkedListBoxMainHabbits.CheckOnClick = true;
+			this.checkedListBoxMainHabbits.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkedListBoxMainHabbits.FormattingEnabled = true;
+			this.checkedListBoxMainHabbits.Location = new System.Drawing.Point(6, 107);
+			this.checkedListBoxMainHabbits.Name = "checkedListBoxMainHabbits";
+			this.checkedListBoxMainHabbits.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.checkedListBoxMainHabbits.Size = new System.Drawing.Size(803, 290);
+			this.checkedListBoxMainHabbits.TabIndex = 4;
+			// 
+			// buttonMainAddHabbit
+			// 
+			this.buttonMainAddHabbit.Font = new System.Drawing.Font("Verdana", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.buttonMainAddHabbit.ForeColor = System.Drawing.Color.RoyalBlue;
+			this.buttonMainAddHabbit.Location = new System.Drawing.Point(6, 396);
+			this.buttonMainAddHabbit.Name = "buttonMainAddHabbit";
+			this.buttonMainAddHabbit.Size = new System.Drawing.Size(803, 46);
+			this.buttonMainAddHabbit.TabIndex = 0;
+			this.buttonMainAddHabbit.Text = "+";
+			this.buttonMainAddHabbit.UseVisualStyleBackColor = true;
+			this.buttonMainAddHabbit.Click += new System.EventHandler(this.buttonMainAddHabbit_Click);
 			// 
 			// panelMainClaimReward
 			// 
@@ -144,38 +167,16 @@
 			this.imageListTabs.Images.SetKeyName(0, "Journal.ico");
 			this.imageListTabs.Images.SetKeyName(1, "Main.ico");
 			// 
-			// buttonMainAddHabbit
-			// 
-			this.buttonMainAddHabbit.Font = new System.Drawing.Font("Verdana", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonMainAddHabbit.ForeColor = System.Drawing.Color.RoyalBlue;
-			this.buttonMainAddHabbit.Location = new System.Drawing.Point(6, 396);
-			this.buttonMainAddHabbit.Name = "buttonMainAddHabbit";
-			this.buttonMainAddHabbit.Size = new System.Drawing.Size(803, 46);
-			this.buttonMainAddHabbit.TabIndex = 0;
-			this.buttonMainAddHabbit.Text = "+";
-			this.buttonMainAddHabbit.UseVisualStyleBackColor = true;
-			this.buttonMainAddHabbit.Click += new System.EventHandler(this.buttonMainAddHabbit_Click);
-			// 
-			// checkedListBoxMainHabbitDone
-			// 
-			this.checkedListBoxMainHabbitDone.CheckOnClick = true;
-			this.checkedListBoxMainHabbitDone.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkedListBoxMainHabbitDone.FormattingEnabled = true;
-			this.checkedListBoxMainHabbitDone.Location = new System.Drawing.Point(6, 107);
-			this.checkedListBoxMainHabbitDone.Name = "checkedListBoxMainHabbitDone";
-			this.checkedListBoxMainHabbitDone.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.checkedListBoxMainHabbitDone.Size = new System.Drawing.Size(803, 290);
-			this.checkedListBoxMainHabbitDone.TabIndex = 4;
-			// 
-			// Form1
+			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(850, 560);
 			this.Controls.Add(this.tabControlMainPages);
-			this.Name = "Form1";
+			this.Name = "MainWindow";
 			this.Text = "Life Quest";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
 			this.tabControlMainPages.ResumeLayout(false);
 			this.tabPageMain.ResumeLayout(false);
 			this.panelMainClaimReward.ResumeLayout(false);
@@ -194,7 +195,7 @@
 		private System.Windows.Forms.Label labelMainProgress;
 		private System.Windows.Forms.Panel panelMainClaimReward;
 		private System.Windows.Forms.ImageList imageListTabs;
-		private System.Windows.Forms.CheckedListBox checkedListBoxMainHabbitDone;
+		private System.Windows.Forms.CheckedListBox checkedListBoxMainHabbits;
 		private System.Windows.Forms.Button buttonMainAddHabbit;
 	}
 }

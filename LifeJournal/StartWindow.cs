@@ -10,6 +10,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using LifeJournal;
+using System.Security.Policy;
 
 namespace LifeQuest
 {
@@ -50,18 +53,53 @@ namespace LifeQuest
 			SqlCommand cmd = new SqlCommand(command, conn);
 			conn.Open();
 			reader = cmd.ExecuteReader();
-			if (reader.HasRows) return true;
+			if (reader.HasRows)
+			{
+				conn.Close(); 
+				return true;
+			}
+			conn.Close();
 			return false;
 		}
 
 		private void buttonSWLogin_Click(object sender, EventArgs e)
 		{
-
+			string command = $@"SELECT user_id, password FROM Users WHERE login = @login";
+			conn.Open();
+			SqlCommand cmd = new SqlCommand(command, conn);
+			cmd.Parameters.AddWithValue("@login", textBoxLogin.Text);
+			reader = cmd.ExecuteReader();
+			reader.Read();
+			if (reader.HasRows && PWDHasher.Verify(textBoxPassword.Text, reader[1].ToString()))
+			{
+				int user = Convert.ToInt32(reader[0].ToString());
+				MainWindow mainWindow = new MainWindow(user, conn);
+				mainWindow.Show(this);
+				this.Hide();
+			}
+			else
+			{
+				labelLoginMessage.Text = "Incorrect login or password!";
+			}
+			reader.Close();
+			conn.Close();
 		}
 
 		private void buttonRegister_Click(object sender, EventArgs e)
 		{
-			
+			string hash = PWDHasher.Hash(textBoxRegisterPWD.Text);
+			string command = $@"
+			IF NOT EXISTS (SELECT user_id FROM Users WHERE login = @login) 
+			BEGIN 
+				INSERT INTO Users (login, password) 
+				VALUES (@login, @password) 
+			END";
+			conn.Open();
+			SqlCommand cmd = new SqlCommand(command, conn);
+			cmd.Parameters.AddWithValue("@login", textBoxRegisterLogin.Text);
+			cmd.Parameters.AddWithValue("@password", hash);
+			cmd.ExecuteNonQuery();
+			conn.Close();
 		}
 
 		private void textBoxRegisterLogin_TextChanged(object sender, EventArgs e)
@@ -96,6 +134,12 @@ namespace LifeQuest
 			if(ValidateLogin(textBoxRegisterLogin.Text) && ValidatePass(textBoxRegisterPWD.Text) && CheckMatchPass())
 				buttonRegister.Enabled = true;
 			else buttonRegister.Enabled = false;
+		}
+
+		private string GetHash(string pwd)
+		{
+			string hash = PWDHasher.Hash(pwd);
+			return hash;
 		}
 	}
 }
