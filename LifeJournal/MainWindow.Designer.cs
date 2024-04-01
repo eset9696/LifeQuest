@@ -37,7 +37,7 @@
 			this.panelMainClaimReward = new System.Windows.Forms.Panel();
 			this.labelMainProgress = new System.Windows.Forms.Label();
 			this.btnClaimReward = new System.Windows.Forms.Button();
-			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.progressBarReward = new System.Windows.Forms.ProgressBar();
 			this.tabPageQuestJournal = new System.Windows.Forms.TabPage();
 			this.imageListTabs = new System.Windows.Forms.ImageList(this.components);
 			this.tabControlMainPages.SuspendLayout();
@@ -88,6 +88,7 @@
 			this.checkedListBoxMainHabbits.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.checkedListBoxMainHabbits.Size = new System.Drawing.Size(803, 290);
 			this.checkedListBoxMainHabbits.TabIndex = 4;
+			this.checkedListBoxMainHabbits.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxMainHabbits_ItemCheck);
 			// 
 			// buttonMainAddHabbit
 			// 
@@ -108,7 +109,7 @@
 			this.panelMainClaimReward.BackColor = System.Drawing.Color.RoyalBlue;
 			this.panelMainClaimReward.Controls.Add(this.labelMainProgress);
 			this.panelMainClaimReward.Controls.Add(this.btnClaimReward);
-			this.panelMainClaimReward.Controls.Add(this.progressBar1);
+			this.panelMainClaimReward.Controls.Add(this.progressBarReward);
 			this.panelMainClaimReward.Location = new System.Drawing.Point(6, 18);
 			this.panelMainClaimReward.Name = "panelMainClaimReward";
 			this.panelMainClaimReward.Size = new System.Drawing.Size(806, 82);
@@ -141,14 +142,14 @@
 			this.btnClaimReward.Text = "Claim";
 			this.btnClaimReward.UseVisualStyleBackColor = false;
 			// 
-			// progressBar1
+			// progressBarReward
 			// 
-			this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.progressBar1.Location = new System.Drawing.Point(3, 46);
-			this.progressBar1.Maximum = 1000;
-			this.progressBar1.Name = "progressBar1";
-			this.progressBar1.Size = new System.Drawing.Size(670, 10);
-			this.progressBar1.TabIndex = 0;
+			this.progressBarReward.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.progressBarReward.Location = new System.Drawing.Point(3, 46);
+			this.progressBarReward.Maximum = 1000;
+			this.progressBarReward.Name = "progressBarReward";
+			this.progressBarReward.Size = new System.Drawing.Size(670, 10);
+			this.progressBarReward.TabIndex = 0;
 			// 
 			// tabPageQuestJournal
 			// 
@@ -177,6 +178,7 @@
 			this.Name = "MainWindow";
 			this.Text = "Life Quest";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+			this.Load += new System.EventHandler(this.MainWindow_Load);
 			this.tabControlMainPages.ResumeLayout(false);
 			this.tabPageMain.ResumeLayout(false);
 			this.panelMainClaimReward.ResumeLayout(false);
@@ -191,7 +193,7 @@
 		private System.Windows.Forms.TabPage tabPageMain;
 		private System.Windows.Forms.TabPage tabPageQuestJournal;
 		private System.Windows.Forms.Button btnClaimReward;
-		private System.Windows.Forms.ProgressBar progressBar1;
+		private System.Windows.Forms.ProgressBar progressBarReward;
 		private System.Windows.Forms.Label labelMainProgress;
 		private System.Windows.Forms.Panel panelMainClaimReward;
 		private System.Windows.Forms.ImageList imageListTabs;

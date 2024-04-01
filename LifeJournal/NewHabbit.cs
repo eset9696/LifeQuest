@@ -85,5 +85,6 @@ namespace LifeQuest
 			comboBoxNewHabbitCategory.SelectedIndex = 0;
 			GetHabbitValue();
 		}
+
 	}
 }

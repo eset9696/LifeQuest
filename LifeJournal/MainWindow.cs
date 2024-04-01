@@ -24,17 +24,19 @@ namespace LifeQuest
 			InitializeComponent();
 			this.user = user;
 			conn = connection;
+			//LoadHabbits();
 		}
 
 		private void LoadHabbits()
 		{
 			string command = $@"SELECT habbitDescription, habbitStatus FROM Habbits, Users WHERE [user] = @user";
 			SqlCommand cmd = new SqlCommand(command, conn);
+			cmd.Parameters.AddWithValue("@user", user.ToString());
 			conn.Open();
 			reader = cmd.ExecuteReader();
 			while (reader.Read())
 			{
-				checkedListBoxMainHabbits.Items.Add(reader.GetString(0));
+				checkedListBoxMainHabbits.Items.Add(reader[0], Convert.ToBoolean(reader[1]));
 			}
 			reader.Close();
 			conn.Close();
@@ -46,17 +48,6 @@ namespace LifeQuest
 			DialogResult dialogResult = newHabbit.ShowDialog(this);
 			if(dialogResult == DialogResult.OK)
 			{
-				/*string command = $@"IF NOT EXISTS (SELECT habbit_id FROM Habbits, Users, HabbitTypes
-								WHERE [user] = {user} AND habbitDescription = '{newHabbit.Habbit}' AND type = '{newHabbit.HabbitType}') 
-									BEGIN 
-										INSERT INTO Habbits([user], habbitDescription, habbitType, habbitStatus, value, habbitCategory)
-										VALUES ({user}, '{newHabbit.Habbit}', 
-								(SELECT habbit_type_id FROM HabbitTypes WHERE type = '{newHabbit.HabbitType}'), 0, '{newHabbit.HabbitValue}', 
-								(SELECT habbit_category_id FROM HabbitCategory WHERE category = '{newHabbit.HabbitCategory}'))
-									END";
-				conn.Open();
-				SqlCommand cmd = new SqlCommand(command, conn);*/
-
 				string command = $@"IF NOT EXISTS (SELECT habbit_id FROM Habbits, Users, HabbitTypes
 								WHERE [user] = @user AND habbitDescription = @habbitDescription AND type = @type) 
 									BEGIN 
@@ -82,7 +73,77 @@ namespace LifeQuest
 
 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			//SaveHabbits();
 			Application.Exit();
+		}
+
+		private void MainWindow_Load(object sender, EventArgs e)
+		{
+			LoadHabbits();
+		}
+
+
+		private void SaveHabbits()
+		{
+			string command = $@"UPDATE Habbits SET habbitStatus = @habbitStatus WHERE [user] = @user";
+			SqlCommand cmd = new SqlCommand(command, conn);
+			conn.Open();
+			cmd.Parameters.AddWithValue("@user", user);
+			cmd.Parameters.AddWithValue("@habbitStatus", !checkedListBoxMainHabbits.GetItemChecked(checkedListBoxMainHabbits.SelectedIndex));
+			cmd.ExecuteNonQuery();
+			/*for(int i = 0; i < checkedListBoxMainHabbits.Items.Count; i++)
+			{
+				cmd.Parameters.AddWithValue("@user", user);
+				cmd.Parameters.AddWithValue("@habbitStatus", checkedListBoxMainHabbits.GetItemChecked(i));
+				cmd.ExecuteNonQuery();
+			}*/
+			conn.Close();
+		}
+
+		private void SaveProgress()
+		{
+			
+		}
+
+		private void LoadProgress() { }
+
+		private bool CheckHabbitStatus()
+		{
+			bool result;
+			string command = $@"SELECT habbitStatus FROM Habbits WHERE [user] = @user AND @habbitDescription = @habbitDescription";
+			SqlCommand cmd = new SqlCommand(command, conn);
+			cmd.Parameters.AddWithValue("@user", user);
+			cmd.Parameters.AddWithValue("@habbitDescription", checkedListBoxMainHabbits.SelectedItem.ToString());
+			conn.Open();
+			reader = cmd.ExecuteReader();
+			reader.Read();
+			result = Convert.ToBoolean(reader[0]);
+			reader.Close();
+			conn.Close();
+			return result == checkedListBoxMainHabbits.GetItemChecked(checkedListBoxMainHabbits.SelectedIndex);
+		}
+
+		private void checkedListBoxMainHabbits_ItemCheck(object sender, ItemCheckEventArgs e)
+		{
+			if (checkedListBoxMainHabbits.SelectedIndex >= 0)
+			{
+				
+				if (!checkedListBoxMainHabbits.GetItemChecked(checkedListBoxMainHabbits.SelectedIndex))
+				{
+					string command = $@"SELECT value FROM Habbits WHERE [user] = @user AND @habbitDescription = @habbitDescription";
+					SqlCommand cmd = new SqlCommand(command, conn);
+					cmd.Parameters.AddWithValue("@user", user);
+					cmd.Parameters.AddWithValue("@habbitDescription", checkedListBoxMainHabbits.SelectedItem.ToString());
+					conn.Open();
+					reader = cmd.ExecuteReader();
+					reader.Read();
+					int value = Convert.ToInt32(reader[0]);
+					reader.Close();
+					conn.Close();
+					if(CheckHabbitStatus()) progressBarReward.Value += value;
+					SaveHabbits();
+				} 
+			}
 		}
 	}
 }

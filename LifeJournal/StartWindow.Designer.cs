@@ -30,6 +30,7 @@
 		{
 			this.tabControlLogin = new System.Windows.Forms.TabControl();
 			this.tabPageLogin = new System.Windows.Forms.TabPage();
+			this.labelLoginMessage = new System.Windows.Forms.Label();
 			this.labelPassword = new System.Windows.Forms.Label();
 			this.labelLogin = new System.Windows.Forms.Label();
 			this.textBoxPassword = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.labelRegisterPSWD = new System.Windows.Forms.Label();
 			this.labelRegisterLogin = new System.Windows.Forms.Label();
-			this.labelLoginMessage = new System.Windows.Forms.Label();
 			this.tabControlLogin.SuspendLayout();
 			this.tabPageLogin.SuspendLayout();
 			this.tabPage2.SuspendLayout();
@@ -80,6 +80,16 @@
 			this.tabPageLogin.Text = "Login";
 			this.tabPageLogin.UseVisualStyleBackColor = true;
 			// 
+			// labelLoginMessage
+			// 
+			this.labelLoginMessage.AutoSize = true;
+			this.labelLoginMessage.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelLoginMessage.ForeColor = System.Drawing.Color.Red;
+			this.labelLoginMessage.Location = new System.Drawing.Point(217, 121);
+			this.labelLoginMessage.Name = "labelLoginMessage";
+			this.labelLoginMessage.Size = new System.Drawing.Size(0, 18);
+			this.labelLoginMessage.TabIndex = 18;
+			// 
 			// labelPassword
 			// 
 			this.labelPassword.AutoSize = true;
@@ -105,6 +115,7 @@
 			this.textBoxPassword.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textBoxPassword.Location = new System.Drawing.Point(220, 75);
 			this.textBoxPassword.Name = "textBoxPassword";
+			this.textBoxPassword.PasswordChar = '*';
 			this.textBoxPassword.Size = new System.Drawing.Size(269, 33);
 			this.textBoxPassword.TabIndex = 15;
 			// 
@@ -161,6 +172,7 @@
 			this.textBoxRegisterPWDConfirm.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textBoxRegisterPWDConfirm.Location = new System.Drawing.Point(220, 116);
 			this.textBoxRegisterPWDConfirm.Name = "textBoxRegisterPWDConfirm";
+			this.textBoxRegisterPWDConfirm.PasswordChar = '*';
 			this.textBoxRegisterPWDConfirm.Size = new System.Drawing.Size(269, 33);
 			this.textBoxRegisterPWDConfirm.TabIndex = 2;
 			this.textBoxRegisterPWDConfirm.TextChanged += new System.EventHandler(this.textBoxRegisterPWDConfirm_TextChanged);
@@ -170,6 +182,7 @@
 			this.textBoxRegisterPWD.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textBoxRegisterPWD.Location = new System.Drawing.Point(220, 75);
 			this.textBoxRegisterPWD.Name = "textBoxRegisterPWD";
+			this.textBoxRegisterPWD.PasswordChar = '*';
 			this.textBoxRegisterPWD.Size = new System.Drawing.Size(269, 33);
 			this.textBoxRegisterPWD.TabIndex = 2;
 			this.textBoxRegisterPWD.TextChanged += new System.EventHandler(this.textBoxRegisterPWD_TextChanged);
@@ -212,16 +225,6 @@
 			this.labelRegisterLogin.Size = new System.Drawing.Size(79, 25);
 			this.labelRegisterLogin.TabIndex = 0;
 			this.labelRegisterLogin.Text = "Login:";
-			// 
-			// labelLoginMessage
-			// 
-			this.labelLoginMessage.AutoSize = true;
-			this.labelLoginMessage.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelLoginMessage.ForeColor = System.Drawing.Color.Red;
-			this.labelLoginMessage.Location = new System.Drawing.Point(217, 121);
-			this.labelLoginMessage.Name = "labelLoginMessage";
-			this.labelLoginMessage.Size = new System.Drawing.Size(0, 18);
-			this.labelLoginMessage.TabIndex = 18;
 			// 
 			// StartWindow
 			// 

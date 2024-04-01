@@ -74,15 +74,17 @@ namespace LifeQuest
 			{
 				int user = Convert.ToInt32(reader[0].ToString());
 				MainWindow mainWindow = new MainWindow(user, conn);
+				reader.Close();
+				conn.Close();
 				mainWindow.Show(this);
 				this.Hide();
 			}
 			else
 			{
 				labelLoginMessage.Text = "Incorrect login or password!";
+				reader.Close();
+				conn.Close();
 			}
-			reader.Close();
-			conn.Close();
 		}
 
 		private void buttonRegister_Click(object sender, EventArgs e)
